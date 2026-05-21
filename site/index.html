@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pick Up Roses Awards</title>
+  <meta name="description" content="The Pick Up Roses Awards is coming. Honoring the caregivers who deserve their roses. Join the list." />
+
+  <meta property="og:title" content="Pick Up Roses Awards" />
+  <meta property="og:description" content="The Pick Up Roses Awards is coming. Honoring the caregivers who deserve their roses. Join the list." />
+  <meta property="og:image" content="/assets/hero.jpg" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Hidden form for Netlify build-time form detection.
+       Netlify scans the deployed HTML for forms with `data-netlify` attribute.
+       This duplicate hidden form ensures detection even when the visible form
+       is rendered with JS or when the page is single-page. Keeping both is
+       harmless and recommended in Netlify Forms docs. -->
+  <form name="awards-signup" netlify netlify-honeypot="bot-field" hidden>
+    <input type="email" name="email" />
+    <input type="text" name="bot-field" />
+  </form>
+
+  <main class="landing">
+    <div class="hero" role="img" aria-label="Pick Up Roses Awards trophy on a marble surface in a softly lit alcove"></div>
+    <div class="scrim" aria-hidden="true"></div>
+
+    <section class="content">
+      <h1 class="headline">Every caregiver deserves their roses.</h1>
+      <p class="subline">The Pick Up Roses Awards is coming. Join the list.</p>
+
+      <form
+        class="signup-form"
+        name="awards-signup"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="awards-signup" />
+        <p class="honeypot">
+          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+
+        <div class="field">
+          <label for="email" class="visually-hidden">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          />
+          <p class="error" id="email-error" role="alert" aria-live="polite"></p>
+        </div>
+
+        <button type="submit" class="submit">Join the list</button>
+      </form>
+
+      <p class="thanks" hidden role="status">Thank you. You're on the list — we'll be in touch.</p>
+    </section>
+  </main>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
