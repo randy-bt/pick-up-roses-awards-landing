@@ -37,6 +37,22 @@ body {
   display: none;
 }
 
+.logo {
+  position: absolute;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 32px;
+  width: auto;
+  opacity: 0.75;
+  z-index: 2;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.95;
+}
+
 /* ---------- Layout shell ---------- */
 
 .landing {
@@ -84,11 +100,11 @@ body {
 
 .headline {
   font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  font-weight: 500;
+  font-weight: 600;
   color: #3A332E;
   font-size: clamp(2rem, 8vw, 2.6rem);
   line-height: 1.15;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.015em;
   margin: 0 0 1rem;
 }
 
@@ -110,20 +126,22 @@ body {
 }
 
 .field {
+  position: relative;
   margin-bottom: 1rem;
 }
 
 input[type="email"] {
   width: 100%;
-  background: transparent;
+  background: rgba(255, 250, 247, 0.4);
   border: none;
   border-bottom: 1px solid rgba(122, 111, 102, 0.4);
-  padding: 0.75rem 0;
+  border-radius: 8px 8px 0 0;
+  padding: 0.75rem 0.75rem;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 1rem;
   color: #3A332E;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 input[type="email"]::placeholder {
@@ -132,8 +150,23 @@ input[type="email"]::placeholder {
 }
 
 input[type="email"]:focus {
-  border-bottom-color: #3A332E;
-  border-bottom-width: 2px;
+  background: rgba(255, 250, 247, 0.65);
+}
+
+.field::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: calc(1.2em + 0.5rem); /* sit just above .error which has min-height 1.2em + margin 0.5rem */
+  width: 0;
+  height: 2px;
+  background: #3A332E;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.field:focus-within::after {
+  left: 0;
+  width: 100%;
 }
 
 .error {
@@ -145,27 +178,36 @@ input[type="email"]:focus {
 
 .submit {
   width: 100%;
-  background: #B98A6F;
+  background: #C19178;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 14px;
   padding: 0.85rem 1.5rem;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.01em;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .submit:hover,
 .submit:focus-visible {
-  background: #A6785E;
+  background: #B07F65;
   outline: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(185, 138, 111, 0.25);
+}
+
+.submit:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .submit:focus-visible {
-  box-shadow: 0 0 0 3px rgba(185, 138, 111, 0.35);
+  box-shadow: 0 0 0 3px rgba(193, 145, 120, 0.35);
 }
 
 .thanks {
@@ -181,9 +223,43 @@ input[type="email"]:focus {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero {
+  animation: heroFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.logo,
+.headline,
+.subline,
+.signup-form {
+  opacity: 0;
+  animation: reveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.logo      { animation-delay: 0ms; }
+.headline  { animation-delay: 150ms; }
+.subline   { animation-delay: 300ms; }
+.signup-form { animation-delay: 450ms; }
+
 /* ---------- Desktop layout (≥ 768px) ---------- */
 
 @media (min-width: 768px) {
+  .logo {
+    top: 2rem;
+    left: 2rem;
+    transform: none;
+    height: 36px;
+  }
+
   .hero {
     background-position: center right;
   }
@@ -224,5 +300,27 @@ input[type="email"]:focus {
   .submit {
     width: auto;
     padding: 0.85rem 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .logo,
+  .headline,
+  .subline,
+  .signup-form,
+  .thanks,
+  .submit,
+  .field::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .logo,
+  .headline,
+  .subline,
+  .signup-form {
+    opacity: 1;
+    transform: none;
   }
 }
