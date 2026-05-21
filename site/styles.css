@@ -180,3 +180,49 @@ input[type="email"]:focus {
   from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ---------- Desktop layout (≥ 768px) ---------- */
+
+@media (min-width: 768px) {
+  .hero {
+    background-position: center right;
+  }
+
+  .scrim {
+    display: none;
+  }
+
+  .content {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translateY(-50%);
+    padding: 0 4rem;
+    text-align: left;
+    max-width: 560px;
+    width: 45%;
+  }
+
+  .headline {
+    font-size: clamp(2.25rem, 4.2vw, 3.25rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .subline {
+    font-size: clamp(1.05rem, 1.3vw, 1.125rem);
+    margin: 0 0 2rem;
+    max-width: 26rem;
+  }
+
+  .signup-form {
+    margin: 0;
+    max-width: 420px;
+  }
+
+  .submit {
+    width: auto;
+    padding: 0.85rem 2rem;
+  }
+}
