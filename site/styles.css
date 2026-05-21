@@ -157,7 +157,7 @@ input[type="email"]:focus {
   content: '';
   position: absolute;
   left: 50%;
-  bottom: calc(1.2em + 0.5rem); /* sit just above .error which has min-height 1.2em + margin 0.5rem */
+  bottom: calc(0.5rem + 0.875rem * 1.2); /* align to input bottom: .error margin-top 0.5rem + .error min-height 1.2em at its own 0.875rem font-size */
   width: 0;
   height: 2px;
   background: #3A332E;
