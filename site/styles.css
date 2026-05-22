@@ -37,20 +37,21 @@ body {
   display: none;
 }
 
-.logo {
+.brand {
   position: absolute;
-  top: 1.25rem;
+  top: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
-  height: 32px;
-  width: auto;
-  opacity: 0.75;
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #3A332E;
+  opacity: 0.85;
+  white-space: nowrap;
   z-index: 2;
-  transition: opacity 0.2s ease;
-}
-
-.logo:hover {
-  opacity: 0.95;
 }
 
 /* ---------- Layout shell ---------- */
@@ -75,13 +76,13 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
-  height: 55%;
+  top: 0;
+  height: 60%;
   background: linear-gradient(
     to bottom,
-    rgba(255, 250, 247, 0) 0%,
-    rgba(255, 250, 247, 0.6) 35%,
-    rgba(255, 250, 247, 0.88) 100%
+    rgba(255, 250, 247, 0.92) 0%,
+    rgba(255, 250, 247, 0.7) 50%,
+    rgba(255, 250, 247, 0) 100%
   );
   pointer-events: none;
 }
@@ -90,8 +91,8 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
-  padding: 0 24px 48px;
+  top: 0;
+  padding: 4.5rem 24px 0;
   text-align: center;
   z-index: 1;
 }
@@ -237,7 +238,7 @@ input[type="email"]:focus {
   animation: heroFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.logo,
+.brand,
 .headline,
 .subline,
 .signup-form {
@@ -245,7 +246,7 @@ input[type="email"]:focus {
   animation: reveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.logo      { animation-delay: 0ms; }
+.brand     { animation-delay: 0ms; }
 .headline  { animation-delay: 150ms; }
 .subline   { animation-delay: 300ms; }
 .signup-form { animation-delay: 450ms; }
@@ -253,11 +254,11 @@ input[type="email"]:focus {
 /* ---------- Desktop layout (≥ 768px) ---------- */
 
 @media (min-width: 768px) {
-  .logo {
+  .brand {
     top: 2rem;
     left: 2rem;
     transform: none;
-    height: 36px;
+    font-size: 0.8rem;
   }
 
   .hero {
@@ -305,7 +306,7 @@ input[type="email"]:focus {
 
 @media (prefers-reduced-motion: reduce) {
   .hero,
-  .logo,
+  .brand,
   .headline,
   .subline,
   .signup-form,
@@ -316,7 +317,7 @@ input[type="email"]:focus {
     transition: none !important;
   }
 
-  .logo,
+  .brand,
   .headline,
   .subline,
   .signup-form {
